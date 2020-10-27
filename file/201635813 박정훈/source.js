@@ -96,7 +96,7 @@ window.onload = function init()
     canvas.addEventListener("click",function(event){
         var p= vec2(2*event.clientX/canvas.width -1,
             2*(canvas.height-event.clientY)/canvas.height-1);
-    //    alert(1/Math.tan(event.clientX/event.clientY));
+       alert(1/Math.tan(event.clientX/event.clientY));
             theta = 1/Math.tan(event.clientX/event.clientY);
             // alert(event.clientX/event.clientY);
         //30도 theta = cot(x/y)
