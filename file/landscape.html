@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+uniform vec4 vOffset;
+
+void
+main()
+{
+    gl_Position = vPosition + vOffset;
+}
+</script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+uniform vec4 vColor;
+
+void
+main()
+{
+    gl_FragColor = vColor;
+}
+</script>
+
+    <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="../Common/initShaders.js"></script>
+    <script type="text/javascript" src="../Common/MV.js"></script>
+    <script type="text/javascript" src="background.js"></script>
+</head>
+
+<body>
+<meta charset="utf-8">
+<title>Growing Earthworm</title>
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Georgia;
+    }
+    input {
+        width: 100%;
+        padding: 10px 10px;
+        font-size: 20px;
+    }
+    textarea {
+        width: 41%;
+        height: 30px;
+        padding: 1px 1px;
+        font-size: 20px;
+        text-align: center;
+        background-color: black;
+    }
+    textarea::-webkit-input-placeholder {
+        color: orange;
+        font-family: impact;
+    }
+</style>
+</head>
+<body>
+<textarea placeholder="G r o w i n g      E a r t h w o r m"></textarea>
+<br>
+<canvas id="gl-canvas" width="512" height="512">
+    Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+<button id="Pause">Pause</button>
+<button id="Restart">Restart</button>
+<select id="Difficulty" size="3">
+    <option value="0">Level 1</option>
+    <option value="1">Level 2</option>
+    <option value="2">Level 3</option>
+</select>
+<I>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp@Made by 201635813 박정훈&nbsp&nbsp201635840 이정명&nbsp&nbsp201635848 장휘준</I>
+</body>
+</html>
