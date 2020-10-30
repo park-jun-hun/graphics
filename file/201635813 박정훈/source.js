@@ -33,26 +33,27 @@ window.onload = function init()
 
     gl.viewport( 0, 0, canvas.width, canvas.height );
     // background
-    gl.clearColor( 0.0, 1.0, 1.0, 1.0 );
+    gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
     gl.clear(gl.COLOR_BUFFER_BIT);
-
+    gl.enable(gl.DEPTH_TEST);
+    
     thetaLoc = gl.getUniformLocation(program, "theta");
 
 
     //square
     var cusor = [
     
-        vec2(0.0,0.5),
-        vec2(-0.5,0.0),
-        vec2(0.5,0.0),
+        vec2(0.0,2.5),
+        vec2(-0.5,2.0),
+        vec2(0.5,2.0),
       
-        vec2(-0.25,0.0),
-        vec2(-0.25,-0.5),
-        vec2(0.25,0.25),
+        vec2(-0.25,2.0),
+        vec2(-0.25,1.5),
+        vec2(0.25,2.25),
 
-        vec2(0.25,0.25),
-        vec2(-0.25,-0.5),
-        vec2(0.25,-0.5)
+        vec2(0.25,2.25),
+        vec2(-0.25,1.5),
+        vec2(0.25,1.5)
      
     ];
     var cusor_color=[
@@ -67,14 +68,14 @@ window.onload = function init()
         vec4(0.24,0.7,0.53,1.0)
     ]
     var cusor_line=[
-        vec2(0.0,0.5),
-        vec2(-0.5,0.0),
-        vec2(-0.25,0.0),
-        vec2(-0.25,-0.5),
-        vec2(0.25,-0.5),
-        vec2(0.25,0.0),
-        vec2(0.5,0.0),
-        vec2(0.0,0.5) 
+        vec2(0.0,2.5),
+        vec2(-0.5,2.0),
+        vec2(-0.25,2.0),
+        vec2(-0.25,1.5),
+        vec2(0.25,1.5),
+        vec2(0.25,2.0),
+        vec2(0.5,2.0),
+        vec2(0.0,2.5) 
     ]
   
     var cusor_line_color=[
@@ -85,7 +86,73 @@ window.onload = function init()
         vec4(0.0,0.0,0.0,1.0),
         vec4(0.0,0.0,0.0,1.0),
         vec4(0.0,0.0,0.0,1.0),
+        vec4(0.0,0.0,0.0,1.0),
+        vec4(0.0,0.0,0.0,1.0),
+        vec4(0.0,0.0,0.0,1.0),
         vec4(0.0,0.0,0.0,1.0)
+    ]
+
+    var head =[
+      vec2(0.0,0.0),
+
+      vec2(0.5,1.0),
+      vec2(-0.5,1.0),
+
+      vec2(-1.0,0.5),
+      vec2(-1.0,-0.5),
+
+      vec2(-0.5,-1),
+      vec2(0.5,-1),
+
+      vec2(1.0,-0.5),
+      vec2(1.0,0.5),
+      vec2(0.5,1.0),
+      
+    ];
+    
+    var head_color=[
+        vec4(0.2,0.4,0.5,1.0),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5),
+        vec4(0.2,0.4,0.5,0.5)
+    ]
+    var right_eye=[
+        vec2(3.0,7.0),
+
+      vec2(3.5,8.0),
+      vec2(2.5,8.0),
+
+      vec2(2.0,7.5),
+      vec2(2.0,6.5),
+
+      vec2(2.5,6),
+      vec2(3.5,6),
+
+      vec2(4.0,6.5),
+      vec2(4.0,7.5),
+      vec2(3.5,8.0),
+    ]
+    var left_eye=[
+        vec2(-3.0,7.0),
+
+        vec2(-2.5,8.0),
+        vec2(-3.5,8.0),
+  
+        vec2(-4.0,7.5),
+        vec2(-4.0,6.5),
+  
+        vec2(-3.5,6),
+        vec2(-2.5,6),
+  
+        vec2(-2.0,6.5),
+        vec2(-2.0,7.5),
+        vec2(-2.5,8.0),
     ]
   
 
@@ -93,22 +160,43 @@ window.onload = function init()
 
 
 // using mouse click down
-    canvas.addEventListener("click",function(event){
+    canvas.addEventListener("mousemove",function(event){
         var p= vec2(2*event.clientX/canvas.width -1,
             2*(canvas.height-event.clientY)/canvas.height-1);
-       alert(1/Math.tan(event.clientX/event.clientY));
-            theta = 1/Math.tan(event.clientX/event.clientY);
-            // alert(event.clientX/event.clientY);
-        //30도 theta = cot(x/y)
-    //   theta+=0.523;
+            var distance = Math.sqrt(p[0]*p[0] +p[1]*p[1]);
+
+            if(p[0]>0&&p[1]>0){
+                theta=-1.57+Math.acos(p[0]/distance);
+            }
+            else if(p[0]<0&&p[1]>0){
+                theta=-1.57+Math.acos(p[0]/distance);
+            }
+            else if(p[0]<0&&p[1]<0){
+                theta=+1.57+Math.acos(-p[0]/distance);
+            }
+            else{
+                theta=+1.57+Math.acos(-p[0]/distance);
+            }
+    // 30도  
+    // theta-=0.523;
+    // 90도
+    // theta -=1.57
       gl.uniform1f(thetaLoc, theta);
       object();
     });
     object();
     function object(){
-
-        draw(gl.TRIANGLES, cusor, cusor_color,[0.0,0.0,0.0,5.5]);
-        draw(gl.LINE_STRIP, cusor_line, cusor_line_color,[0.0,0.0,0.0,5.5] )
+        var count=0;
+        draw(gl.TRIANGLES, cusor, cusor_color,[0.0,0.0,0.0,8.5]);
+        draw(gl.LINE_STRIP, cusor_line, cusor_line_color,[0.0,0.0,0.0,8.5]);
+        draw(gl.TRIANGLE_FAN,head,head_color,[0.0,0.0,0.0,10.0]);
+        draw(gl.TRIANGLE_FAN,right_eye,cusor_line_color,[0.0,0.0,-1.0,100.0]);
+        draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[0.0,0.0,-1.0,100.0]);
+        // BODY 
+        for(count=0;count<10;count++){
+        draw(gl.TRIANGLE_FAN,head,head_color,[0.0,-count,0.0,10+count]);
+        }
+        
     }
     // drawing square
     function draw(shape,vertex,color,offset){
