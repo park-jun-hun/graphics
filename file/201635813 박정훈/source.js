@@ -17,6 +17,8 @@ var position=0;
 var xpoint=0;
 var ypoint=0;
 var slope=0;
+var second_x=0;
+var second_y=0;
 
 window.onload = function init()
 {
@@ -224,7 +226,20 @@ document.getElementById("Difficulty").onclick=function(event){
    
    ypoint+=p[1]/30;
 
-   slope=p[1]/p[0];
+   slope=p[0]/p[1];
+   second_x = Math.sqrt(1/(slope*slope+1));
+   second_y=slope*second_x;
+   if(p[0]<0&&p[1]>0){
+    second_x = -second_x;
+    second_y=-second_y
+   }
+   if(p[0]>0&&p[1]>0){
+    second_x = -second_x;
+    second_y=-second_y
+   }
+ 
+
+  
         }
     });
 
@@ -244,8 +259,13 @@ document.getElementById("Difficulty").onclick=function(event){
         gl.uniform1f(thetaLoc,0);
             // BODY 
             for(count=0;count<10;count++){
-                draw(gl.TRIANGLE_FAN,head,head_color,[0.0,-count,0.0,10+count]);
+                if(count==1){
+                draw(gl.TRIANGLE_FAN,head,head_color,[second_y,second_x,0.0,10+count]);        
                 }
+                
+                draw(gl.TRIANGLE_FAN,head,head_color,[0.0,-count,0.0,10+count]);
+                
+            }
         // back
         for(row=1;row>-3;row-=0.2){
             for(count=-1;count<2;count+=0.2){
