@@ -12,6 +12,11 @@ var direction = 1;
 var theta=0;
 var thetaLoc;
 var start=true;
+var pace =1; 
+var position=0;
+var xpoint=0;
+var ypoint=0;
+var slope=0;
 
 window.onload = function init()
 {
@@ -214,6 +219,12 @@ document.getElementById("Difficulty").onclick=function(event){
     // theta -=1.57
       gl.uniform1f(thetaLoc, theta);
       object();
+    //   move back ground 
+    xpoint+=p[0]/30;
+   
+   ypoint+=p[1]/30;
+
+   slope=p[1]/p[0];
         }
     });
 
@@ -221,32 +232,36 @@ document.getElementById("Difficulty").onclick=function(event){
     function object(){
         var count=0;
         var row=0;
-        
-    
-
+        position+=pace;
         draw(gl.TRIANGLES, cusor, cusor_color,[0.0,0.0,0.0,8.5]);
         draw(gl.LINE_STRIP, cusor_line, cusor_line_color,[0.0,0.0,0.0,8.5]);
-        draw(gl.TRIANGLE_FAN,head,head_color,[0.0,0.0,0.0,10.0]);
+       
+      
         draw(gl.TRIANGLE_FAN,right_eye,cusor_line_color,[0.0,0.0,-1.0,100.0]);
         draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[0.0,0.0,-1.0,100.0]);
-        // BODY 
-        for(count=0;count<10;count++){
-        draw(gl.TRIANGLE_FAN,head,head_color,[0.0,-count,0.0,10+count]);
-        }
 
         // 고정값 
         gl.uniform1f(thetaLoc,0);
+            // BODY 
+            for(count=0;count<10;count++){
+                draw(gl.TRIANGLE_FAN,head,head_color,[0.0,-count,0.0,10+count]);
+                }
         // back
-        for(row=0;row>-3;row-=0.2){
-            for(count=0;count<2;count+=0.2){
-            draw(gl.LINE_LOOP, back, cusor_color,[count,row,0.1,0.0]);
+        for(row=1;row>-3;row-=0.2){
+            for(count=-1;count<2;count+=0.2){
+                if(xpoint>0.15||xpoint<-0.2){
+                    xpoint=0;
+                }
+                if(ypoint>0.15||ypoint<-0.2){
+                    ypoint=0;
+                }
+            draw(gl.LINE_LOOP, back, cusor_color,[-xpoint+count,-ypoint+row,0.1,0.0]);
             }
     }
     draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[2.5,-6.0,1.0,0.1]);
     draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[3.5,-6.0,1.0,0.1]);
     draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[2.5,-7.5,1.0,0.1]);
     draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[3.5,-7.5,1.0,0.1]);
-    // draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[4.0,-6.0,1.0,0.5]);
     }
     // drawing square
     function draw(shape,vertex,color,offset){
