@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--
 <script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
 attribute vec4 vColor;
+
+attribute vec2 fPosition;
+uniform vec2 fResolution;
+
 varying vec4 fColor;
 uniform vec4 vOffset;
 uniform float theta; 
@@ -18,6 +23,8 @@ main()
     gl_Position.w = 1.0; 
     gl_Position+=vOffset;
 	fColor = vColor;
+	
+	
 }
 </script>
 
@@ -31,16 +38,25 @@ main()
 }
 </script>
 
-<script type="text/javascript" src="../Common/webgl-utils.js"></script>
-<script type="text/javascript" src="../Common/initShaders.js"></script>
-<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="./Common/webgl-utils.js"></script>
+<script type="text/javascript" src="./Common/initShaders.js"></script>
+<script type="text/javascript" src="./Common/MV.js"></script>
 <script type="text/javascript" src="source.js"></script>
-</head>
-
-<
-    <body>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
     <title>Growing Earthworm</title>
+-->
+
+
+<!--Load Library File-->
+<script type="text/javascript" src=".js/phaser.min.js"></script>
+
+<!--Load Game Source File-->
+<script type="text/javascript" src="Script/game.js"></script>
+<script type="text/javascript" src="Script/snake.js"></script>
+<script type="text/javascript" src="Script/util.js"></script>
+</head>
+<body>
+
     <style>
         * {
             box-sizing: border-box;
@@ -64,14 +80,28 @@ main()
             font-family: impact;
         }
     </style>
-    </head>
-    <body>
+	
+	
+	
+	
     <textarea placeholder="G r o w i n g      E a r t h w o r m"></textarea>
     <br>
-    <canvas id="gl-canvas" width="1000" height="1000">
-        Oops ... your browser doesn't support the HTML5 canvas element
-    </canvas>
-    </body>
+
+
+	
+	<script>
+    (function() {
+        var game = new Phaser.Game(800, 500, Phaser.CANVAS, null);
+
+
+        game.state.add('Game', Game);
+        game.state.start('Game');
+    })();
+
+    </script>
+	
+	
+	
     <button id="Pause">Pause</button>
     <button id="Restart">Restart</button>
     <select id="Difficulty" size="3">
@@ -81,5 +111,7 @@ main()
     </select>
     <br>
     <I>@Made by 201635813 박정훈&nbsp&nbsp201635840 이정명&nbsp&nbsp201635848 장휘준</I>
+	
+	
     </body>
     </html>
