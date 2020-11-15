@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script id="vertex-shader" type="x-shader/x-vertex">
+<script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
 attribute vec4 vColor;
 varying vec4 fColor;
 uniform vec4 vOffset;
-uniform float theta;
+uniform float theta; 
 void
 main()
 {
     float s = sin(theta);
     float c = cos(theta);
-    gl_Position.x = -s * vPosition.y +c * vPosition.x;
-    gl_Position.y = s * vPosition.x + c * vPosition.y;
+    gl_Position.x = -s * vPosition.y +c * vPosition.x; 
+    gl_Position.y = s * vPosition.x + c * vPosition.y; 
     gl_Position.z =0.0;
-    gl_Position.w = 1.0;
+    gl_Position.w = 1.0; 
     gl_Position+=vOffset;
 	fColor = vColor;
 }
 </script>
 
-    <script id="fragment-shader" type="x-shader/x-fragment">
+<script id="fragment-shader" type="x-shader/x-fragment">
 precision mediump float;
 varying vec4 fColor;
 void
@@ -31,54 +31,61 @@ main()
 }
 </script>
 
-    <script type="text/javascript" src="../Common/webgl-utils.js"></script>
-    <script type="text/javascript" src="../Common/initShaders.js"></script>
-    <script type="text/javascript" src="../Common/MV.js"></script>
-    <script type="text/javascript" src="source.js"></script>
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="source.js"></script>
 </head>
 
 
-<p>
-<meta charset="utf-8">
-<title>Growing Earthworm</title>
-<style>
-    * {
-        box-sizing: border-box;
-        font-family: Georgia;
-    }
-    input {
-        width: 100%;
-        padding: 10px 10px;
-        font-size: 30px;
-    }
-    textarea {
-        width: 59%;
-        height: 50px;
-        padding: 1px 1px;
-        font-size: 45px;
-        text-align: center;
-        background-color: black;
-    }
-    textarea::-webkit-input-placeholder {
-        color: orange;
-        font-family: impact;
-    }
-</style>
-</head>
-<body>
-<textarea placeholder="G r o w i n g      E a r t h w o r m"></textarea>
-<br>
-<canvas id="gl-canvas" width="1500" height="1000">
-    Oops ... your browser doesn't support the HTML5 canvas element
-</canvas>
-</body>
-<button id="Pause" style="width:100px;height:70px;border:1px;font-size:20pt;">Pause</button>&nbsp&nbsp
-<button id="Restart" style="width:100px;height:70px;border:1px;font-size:20pt;">Restart</button>&nbsp&nbsp
-<select id="Difficulty" size="3" style="width:150px;height:70px;border:1px;font-size:20pt;">
-    <option value="0">Level 1</option>
-    <option value="1">Level 2</option>
-    <option value="2">Level 3</option>
-</select>
-<p align="right"><I>@Made by 201635813 박정훈&nbsp&nbsp201635840 이정명&nbsp&nbsp201635848 장휘준</I></p>
-</body>
-</html>
+    <body>
+    <meta charset="utf-8">
+    <title>Growing Earthworm</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Georgia;
+        }
+        input {
+            width: 100%;
+            padding: 10px 10px;
+            font-size: 25px;
+        }
+        textarea {
+            width: 74%;
+            height: 35px;
+            padding: 1px 1px;
+            font-size: 25px;
+            text-align: center;
+            background-color: black;
+        }
+        textarea::-webkit-input-placeholder {
+            color: orange;
+            font-family: impact;
+        }
+    </style>
+    </head>
+    <body>
+
+    <textarea placeholder="G r o w i n g      E a r t h w o r m"></textarea>
+    &nbsp&nbsp&nbsp&nbsp
+    <audio controls loop>
+        <source src = "bg.ogg" type = "audio/ogg">
+    </audio>
+    <br>
+    <canvas id="gl-canvas" width="1400" height="750">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+
+    </body>
+    <button id="Pause">Pause</button>
+    <button id="Restart">Restart</button>
+    <select id="Difficulty" size="3">
+        <option value="0">Level 1</option>
+        <option value="1">Level 2</option>
+        <option value="2">Level 3</option>
+    </select>
+    <br>
+    <p align="right"><I>@Made by 201635813 박정훈&nbsp&nbsp201635840 이정명&nbsp&nbsp201635848 장휘준</I></p>
+    </body>
+    </html>
