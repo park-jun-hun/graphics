@@ -100,7 +100,7 @@ window.onload = function init() {
         vec4(0.0, 0.0, 0.0, 1.0),
         vec4(0.0, 0.0, 0.0, 1.0)
     ]
-
+ 
     var head = [
         vec2(0.0, 0.0),
 
