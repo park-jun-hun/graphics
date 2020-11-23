@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<div>그래픽~</div>
 <!--
 <script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec4 vPosition;
@@ -53,39 +54,15 @@ main()
 <!--Load Game Source File-->
 <script type="text/javascript" src="Script/game.js"></script>
 <script type="text/javascript" src="Script/snake.js"></script>
+<script type="text/javascript" src="Script/playerSnake.js"></script>
+<script type="text/javascript" src="Script/botSnake.js"></script>
+<script type="text/javascript" src="Script/eye.js"></script>
+<script type="text/javascript" src="Script/eyePair.js"></script>
+<script type="text/javascript" src="Script/food.js"></script>
 <script type="text/javascript" src="Script/util.js"></script>
 </head>
 <body>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Georgia;
-        }
-        input {
-            width: 100%;
-            padding: 10px 10px;
-            font-size: 20px;
-        }
-        textarea {
-            width: 41%;
-            height: 30px;
-            padding: 1px 1px;
-            font-size: 20px;
-            text-align: center;
-            background-color: black;
-        }
-        textarea::-webkit-input-placeholder {
-            color: orange;
-            font-family: impact;
-        }
-    </style>
-	
-	
-	
-	
-    <textarea placeholder="G r o w i n g      E a r t h w o r m"></textarea>
-    <br>
 
 
 	
@@ -93,7 +70,7 @@ main()
     (function() {
         var game = new Phaser.Game(800, 500, Phaser.CANVAS, null);
 
-
+		//일시정지, 게임종료, 게임시작
         game.state.add('Game', Game);
         game.state.start('Game');
     })();
@@ -101,16 +78,7 @@ main()
     </script>
 	
 	
-	
-    <button id="Pause">Pause</button>
-    <button id="Restart">Restart</button>
-    <select id="Difficulty" size="3">
-        <option value="0">Level 1</option>
-        <option value="1">Level 2</option>
-        <option value="2">Level 3</option>
-    </select>
-    <br>
-    <I>@Made by 201635813 박정훈&nbsp&nbsp201635840 이정명&nbsp&nbsp201635848 장휘준</I>
+
 	
 	
     </body>
