@@ -266,22 +266,8 @@ document.getElementById("Difficulty").onclick=function(event){
                 draw(gl.TRIANGLE_FAN,head,head_color,[0.0,-count,0.0,10+count]);
                 
             }
-        // back
-        for(row=1;row>-3;row-=0.2){
-            for(count=-1;count<2;count+=0.2){
-                if(xpoint>0.15||xpoint<-0.2){
-                    xpoint=0;
-                }
-                if(ypoint>0.15||ypoint<-0.2){
-                    ypoint=0;
-                }
-            draw(gl.LINE_LOOP, back, cusor_color,[-xpoint+count,-ypoint+row,0.1,0.0]);
-            }
-    }
-    draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[2.5,-6.0,1.0,0.1]);
-    draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[3.5,-6.0,1.0,0.1]);
-    draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[2.5,-7.5,1.0,0.1]);
-    draw(gl.TRIANGLE_FAN,left_eye,cusor_line_color,[3.5,-7.5,1.0,0.1]);
+      
+
     }
     // drawing square
     function draw(shape,vertex,color,offset){

@@ -1,0 +1,58 @@
+<html>
+<style type ="text/css">
+   
+
+</style>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+attribute vec2 vTexCoord;
+
+varying vec2 fTexCoord;
+uniform mat4 modelViewMatrix;
+void main()
+{
+
+    fTexCoord = vTexCoord;
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+varying vec2 fTexCoord;
+
+uniform sampler2D texture;
+
+void
+main()
+{
+    gl_FragColor = texture2D(texture, fTexCoord);
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="textureCube2.js"></script>
+
+<body>
+
+<br>
+<canvas id="gl-canvas" width="512" height="512">
+    Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+<br>
+<button id= "xButton">Rotate X</button>
+<button id= "yButton">Rotate Y</button>
+<button id= "zButton">Rotate Z</button>
+<br/>
+201635813 박정훈
+</body>
+</html>
